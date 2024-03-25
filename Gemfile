@@ -48,15 +48,11 @@ gem "bootsnap", require: false
 #Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
 gem 'capybara', '~> 3.40'
 
-#rspec-rails is a testing framework for Rails
-gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
-
-#factory_bot provides a framework and DSL for defining and using factories - less error-prone, more explicit, and all-around easier to work with than fixtures.
-gem 'factory_bot', '~> 6.4', '>= 6.4.6'
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails'
 end
 
 group :development do
