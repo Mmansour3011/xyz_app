@@ -8,16 +8,13 @@ RSpec.describe "todos/edit", type: :view do
 
   before(:each) do
     assign(:todo, todo)
+    render
   end
 
   it "renders the edit todo form" do
-    render
-
-    assert_select "form[action=?][method=?]", todo_path(todo), "post" do
-
-      assert_select "input[name=?]", "todo[title]"
-
-      assert_select "textarea[name=?]", "todo[content]"
+    expect(rendered).to have_selector("form[action='#{todo_path(todo)}'][method='post']") do  
+    expect(rendered).to have_selector("input[name='todo[title]']")
+    expect(rendered).to have_selector("textarea[name='todo[content]']")
     end
   end
 end
