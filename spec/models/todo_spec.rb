@@ -11,7 +11,7 @@ RSpec.describe Todo, type: :model do
   it "is not valid with title longer than 100 characters" do 
     todo=build(:todo , title: "a" * 101)
     expect(todo).not_to be_valid
-    expect(todo.errors[title].to include("maximum is 100 characters"))
+    expect(todo.errors[:title]).to include("maximum is 100 characters")
   end 
 
   it "is valid withoud a content" do

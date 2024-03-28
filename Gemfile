@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 #Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
 gem 'capybara', '~> 3.40'
 
+# tailwind for updating css 
+gem "tailwindcss-rails", "~> 2.3"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
