@@ -1,0 +1,10 @@
+=> 
+[32m#<User:0x00007acf5bbff180[0m
+ id: [34m[1m1[0m,
+ name: [31m[1m"[0m[31mmohamed[0m[31m[1m"[0m,
+ email: [31m[1m"[0m[31mtest@test[0m[31m[1m"[0m,
+ password_digest: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+ admin: [36m[1mfalse[0m,
+ soft_delete: [36m[1mfalse[0m,
+ created_at: Sun, 31 Mar 2024 18:31:19.101274000 UTC +00:00,
+ updated_at: Sun, 31 Mar 2024 18:31:19.101274000 UTC +00:00[32m>[0m
