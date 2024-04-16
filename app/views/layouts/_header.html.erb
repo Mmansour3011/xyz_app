@@ -4,7 +4,12 @@
     </div>
     <div class="md:w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow pb-2 md:pb-0">
+        <% if !logged_in? %>
+        <%= link_to "Login", login_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <% else %>
         <%= link_to "Create Todo", new_todo_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <%= link_to "Logout", logout_path, data: { "turbo-method": :delete },class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <% end %>
       </div>
     </div>
   </nav>
