@@ -9,7 +9,7 @@ RSpec.describe "/users", type: :request do
         attributes_for(:user,name:nil)
     }
 
-    content "index user" do
+    context "index user" do
 
         it "Shows all users when going to index page" do
             user=build(:user)
