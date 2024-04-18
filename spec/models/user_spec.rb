@@ -98,6 +98,54 @@ RSpec.describe User, type: :model do
     context "admin users" do
     end
 
+    context "user Todos " do
+        it "when a user create a todo , its related only to him"do
+        user1=create(:user)
+        todo1=user1.create(:todo)
+
+        expect(user1.todos.count).to eq(1)
+        expect(todo1.user).to eq(user1)
+
+        expect {todo1.update(title: "Updated title")}.to_not raise_error      
+        expect {todo1.destroy}.to_not raise_error
+        end
+
+        it "doesnt allow a user to access another user's to" do
+
+        user1=create(:user)
+        todo1=user1.create(:todo)
+        user2=create(:user)
+
+        expect(user1.todos.count).to eq(1)
+        expect(user2.todos.count).to eq(0)
+        expect(todo1.user).to eq(user1)
+
+        expect {user2.todos.find(todo1.id)}.to raise_error(ActiveRecord::RecordNotFound)
+        expect {todo1.update(title: "Updated title by user 2")}.to raise_error(ActiveRecord::RecordNotFound)
+        expect {todo1.destroy}.to raise_error(ActiveRecord::RecordNotFound)
+        end
+
+        it "only admin users can access all todos" do
+
+        admin=create(:user,admin: true)
+        user1=create(:user)
+        user2=create(:user)
+        user3=create(:user)
+
+        todo1=user1.create(:todo)
+        todo2=user2.create(:todo)
+        todo3=user3.create(:todo)
+
+        expect {admin.todos.find(todo1.id)}.to_not raise_error
+        expect {todo1.update(title: "Updated title by admin")}.to_not raise_error
+        expect {todo1.destroy}.to_not raise_error
+         
+        expect {admin.todos.find(todo2.id)}.to_not raise_error
+        expect {todo2.update(title: "Updated title by admin")}.to_not raise_error
+        expect {todo2.destroy}.to_not raise_error
+        end
+
+    end
 
 
 
