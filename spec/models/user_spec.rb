@@ -101,7 +101,7 @@ RSpec.describe User, type: :model do
     context "user Todos " do
         it "when a user create a todo , its related only to him"do
         user1=create(:user)
-        todo1=user1.create(:todo)
+        todo1=user1.todos.create(title: "user1")
 
         expect(user1.todos.count).to eq(1)
         expect(todo1.user).to eq(user1)
@@ -110,19 +110,19 @@ RSpec.describe User, type: :model do
         expect {todo1.destroy}.to_not raise_error
         end
 
-        it "doesnt allow a user to access another user's to" do
+        it "doesnt allow a user to access another user's todo" do
 
         user1=create(:user)
-        todo1=user1.create(:todo)
-        user2=create(:user)
+        todo1=user1.todos.create(title: "user1")
+        user2=build(:user,email: "Test@test.com")
 
         expect(user1.todos.count).to eq(1)
         expect(user2.todos.count).to eq(0)
         expect(todo1.user).to eq(user1)
 
         expect {user2.todos.find(todo1.id)}.to raise_error(ActiveRecord::RecordNotFound)
-        expect {todo1.update(title: "Updated title by user 2")}.to raise_error(ActiveRecord::RecordNotFound)
-        expect {todo1.destroy}.to raise_error(ActiveRecord::RecordNotFound)
+        expect {user2.todos.find(todo1.id).update(title: "Updated title by user 2")}.to raise_error(ActiveRecord::RecordNotFound)
+        expect {user2.todos.find(todo1.id).destroy}.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it "only admin users can access all todos" do
