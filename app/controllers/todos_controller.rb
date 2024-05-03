@@ -5,11 +5,12 @@ include(TodosHelper)
   
   # GET /todos
   def index
-    @todos = Todo.all
+    @todos=current_user.todos
   end
 
   # GET /todos/1
   def show
+    redirect_to(root_url , status: :see_other) unless current_user == @todo.user
   end
 
   # GET /todos/new
@@ -19,11 +20,12 @@ include(TodosHelper)
 
   # GET /todos/1/edit
   def edit
+    redirect_to(root_url , status: :see_other) unless current_user == @todo.user
   end
 
   # POST /todos
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.create(todo_params)
 
     if @todo.save
       redirect_to @todo, notice: "Todo was successfully created."

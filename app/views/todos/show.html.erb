@@ -1,20 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="md:grid grid-cols-4 md:grid-rows-5 py-4 md:py-0 mx-4">
-<div class="col-span-2 col-start-2 row-span-3 row-start-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl text-pretty break-words">
-  <div class="p-6">
-    <h5 class="block mb-4 md:text-4xl text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-      <%= @todo.title %>
-    </h5>
-    <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit">
-      <%= @todo.content %>
-    </p>
+  <div class="col-span-2 col-start-2 row-span-3 row-start-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl text-pretty break-words">
+    <div class="p-6">
+      <h5 class="block mb-4 md:text-4xl text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+        <%= @todo.title %>
+      </h5>
+      <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit">
+        <%= @todo.content %>
+      </p>
+    </div>
+    
+    <div class=" mx-4 md:mb-5 pb-4 md:pb-0 flex justify-start ">
+      <%= link_to "Edit this todo", edit_todo_path(@todo),class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-blue-700 text-white md:p-3 p-2" %>
+      <%= button_to "Destroy this todo", @todo, method: :delete,data: { turbo_confirm: 'Are you sure?' },class:" font-bold md:text-center uppercase text-base text-xs  rounded-lg bg-red-600 text-white md:p-4 mx-3  p-2" %>  
+      <%= link_to "Back to todos", todos_path,class:" font-bold text-center uppercase md:text-base text-xs rounded-lg bg-yellow-500 text-white md:p-3 p-2" %>
+    </div>
   </div>
-   
-  <div class=" mx-4 md:mb-5 pb-4 md:pb-0 flex justify-start ">
-    <%= link_to "Edit this todo", edit_todo_path(@todo),class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-blue-700 text-white md:p-3 p-2" %>
-    <%= button_to "Destroy this todo", @todo, method: :delete,data: { turbo_confirm: 'Are you sure?' },class:" font-bold md:text-center uppercase text-base text-xs  rounded-lg bg-red-600 text-white md:p-4 mx-3  p-2" %>  
-    <%= link_to "Back to todos", todos_path,class:" font-bold text-center uppercase md:text-base text-xs rounded-lg bg-yellow-500 text-white md:p-3 p-2" %>
-  </div>
-</div>
 </div>
