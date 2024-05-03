@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <div id= "heading" class="text-center my-5">
-  <h1 class="md:text-4xl text-2xl font-bold text-gray-900  ">Welcome to your todos list</h1>
+  <h1 class="md:text-4xl text-2xl font-bold text-gray-900  ">Welcome <%= current_user.name.capitalize%></h1>
 </div>
 
 <div id="todos" class="md:grid grid-cols-3 md:mx-0 mx-4">
