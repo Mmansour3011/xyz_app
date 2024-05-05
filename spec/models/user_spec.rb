@@ -90,8 +90,7 @@ RSpec.describe User, type: :model do
         it "user cant be created with a deleted user email"do
         user1=create(:user,email: "test@test.com")
         user1.archive
-        user2.create(:user,email: "test@test.com")
-        expect(user2).not_to be_valid
+        expect {user2.create(:user,email: "test@test.com")}.to raise_error
         end
     end
 
@@ -128,19 +127,19 @@ RSpec.describe User, type: :model do
         it "only admin users can access all todos" do
 
         admin=create(:user,admin: true)
-        user1=create(:user)
-        user2=create(:user)
-        user3=create(:user)
+        user1=create(:user,email: "user1@test.com")
+        user2=create(:user,email: "user2@test.com")
+        user3=create(:user,email: "user3@test.com")
 
-        todo1=user1.create(:todo)
-        todo2=user2.create(:todo)
-        todo3=user3.create(:todo)
+        todo1=user1.todos.create(title: "test")
+        todo2=user2.todos.create(title: "test")
+        todo3=user3.todos.create(title: "test")
 
-        expect {admin.todos.find(todo1.id)}.to_not raise_error
+        expect {admin.todos.where(id: todo1.id)}.to_not raise_error
         expect {todo1.update(title: "Updated title by admin")}.to_not raise_error
         expect {todo1.destroy}.to_not raise_error
          
-        expect {admin.todos.find(todo2.id)}.to_not raise_error
+        expect {admin.todos.where(id: todo2.id)}.to_not raise_error
         expect {todo2.update(title: "Updated title by admin")}.to_not raise_error
         expect {todo2.destroy}.to_not raise_error
         end

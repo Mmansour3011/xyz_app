@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :todos
-  resources :users
+  resources :users do
+    member do
+      patch :archive
+    end
+  end
   
   # root "todos#index"
   root "application#root"
