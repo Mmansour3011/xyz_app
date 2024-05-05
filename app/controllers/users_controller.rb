@@ -3,8 +3,8 @@ class UsersController < ApplicationController
     include (SessionsHelper)
 
     before_action :logged_in_user, only: [:index,:edit,:update,:destroy]
-    before_action :correct_user , only: [:edit,:update]
-    before_action :admin_user , only: :destroy
+    before_action :correct_or_admin_user , only: [:edit,:update]
+    before_action :admin_user , only: [:archive]
 
     def new
         if current_user
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             reset_session
             log_in @user
             flash[:success] = "Welcome to XYZ App!"
-            redirect_to @user      
+            redirect_to todos_path      
             else
             render "new" , status: :unprocessable_entity
         end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        @user =User.all
+        @users =User.all.where(soft_delete: false,admin: false)
     end
 
     def edit
@@ -39,14 +39,20 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user=User.find[:id]
+        @user=User.find(params[:id])
         if @user.update(user_params)
             flash[:success] = "Profile updated"
-            redirect_to @user
+            redirect_to todos_path
         else
             render "edit", status: :unprocessable_entity
         end
 
+    end
+
+    def archive
+        @user = User.find(params[:id])
+        @user.archive
+        redirect_to users_path,notice: "User is deleted succesfully!"
     end
 
     def destroy
@@ -54,6 +60,7 @@ class UsersController < ApplicationController
         flash[:success] ="User deleted"
         redirect_to users_url,status: :see_other
     end
+
 
     private 
     def user_params
@@ -69,12 +76,19 @@ class UsersController < ApplicationController
 
     def correct_user
         @user =User.find(params[:id])
-        redirect_to(root_url , status: :see_other) unless current_user(@user)
+        redirect_to(root_url , status: :see_other) unless current_user?(@user)
     end
 
     def admin_user
         redirect_to(root_url , status: :see_other) unless current_user.admin?
     end
+
+    def correct_or_admin_user
+        @user = User.find(params[:id])
+        redirect_to(root_url) unless current_user == @user || current_user.admin?
+    end
+
+   
 
 
 
