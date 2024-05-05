@@ -7,7 +7,12 @@
         <% if !logged_in? %>
         <%= link_to "Login", login_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
         <% else %>
+        <% if current_user.admin? %>
+        <%= link_to "Users", users_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <%else%>
         <%= link_to "Create Todo", new_todo_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <%end%>
+        <%= link_to "Settings", edit_user_path(current_user),class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
         <%= link_to "Logout", logout_path, data: { "turbo-method": :delete },class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
         <% end %>
       </div>
