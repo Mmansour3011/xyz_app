@@ -55,13 +55,6 @@ class UsersController < ApplicationController
         redirect_to users_path,notice: "User is deleted succesfully!"
     end
 
-    def destroy
-        User.find(params[:id]).destroy
-        flash[:success] ="User deleted"
-        redirect_to users_url,status: :see_other
-    end
-
-
     private 
     def user_params
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
