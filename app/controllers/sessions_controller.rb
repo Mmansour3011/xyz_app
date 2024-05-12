@@ -9,15 +9,23 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user =User.find_by(email: params[:session][:email].downcase)
+        user=find_user
         if user && user.authenticate(params[:session][:password]) && user.isActive?
-                reset_session
+            reset_session
                 log_in user
                 redirect_to todos_path
         else
         flash.now[:danger]= "Invalid email or password"
         render "new" ,staus: :unprocessable_entity
         end
+    end
+
+    def session_params
+        params.require(:session).permit(:email,:password)
+    end
+
+    def find_user
+        User.where(email: session_params[:email].downcase).first
     end
 
     def destroy
