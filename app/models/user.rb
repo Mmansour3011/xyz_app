@@ -9,4 +9,9 @@ class User < ApplicationRecord
     def archive
         update(soft_delete: true)
     end
+
+    def isActive?
+        !soft_delete
+    end
+    
 end

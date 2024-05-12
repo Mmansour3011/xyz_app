@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     include (UsersHelper)
     include (SessionsHelper)
 
-    before_action :logged_in_user, only: [:index,:edit,:update,:destroy]
+    before_action :logged_in_user, only: [:index,:edit,:update]
     before_action :correct_or_admin_user , only: [:edit,:update]
     before_action :admin_user , only: [:archive]
 
@@ -54,13 +54,6 @@ class UsersController < ApplicationController
         @user.archive
         redirect_to users_path,notice: "User is deleted succesfully!"
     end
-
-    def destroy
-        User.find(params[:id]).destroy
-        flash[:success] ="User deleted"
-        redirect_to users_url,status: :see_other
-    end
-
 
     private 
     def user_params
