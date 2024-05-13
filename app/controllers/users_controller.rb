@@ -7,11 +7,8 @@ class UsersController < ApplicationController
     before_action :admin_user , only: [:archive]
 
     def new
-        if current_user
-            redirect_to todos_path
-        else
-            @user=User.new
-        end
+        redirect_to todos_path if current_user
+        @user = User.new unless current_user
     end
 
     def create
@@ -31,7 +28,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users =User.all.where(soft_delete: false,admin: false)
+        @users =User.where(soft_delete: false,admin: false).all
     end
 
     def edit
@@ -67,23 +64,13 @@ class UsersController < ApplicationController
         end
     end
 
-    def correct_user
-        @user =User.find(params[:id])
-        redirect_to(root_url , status: :see_other) unless current_user?(@user)
-    end
-
     def admin_user
         redirect_to(root_url , status: :see_other) unless current_user.admin?
     end
 
     def correct_or_admin_user
         @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user == @user || current_user.admin?
+        redirect_to(root_url) unless current_user?(@user) || current_user.admin?
     end
-
-   
-
-
-
 
 end
