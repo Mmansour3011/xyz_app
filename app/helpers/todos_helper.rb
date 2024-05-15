@@ -7,6 +7,6 @@ private
 
     # Only allow a list of trusted parameters through.
     def todo_params
-      params.require(:todo).permit(:title, :content,:user_id)
+      params.require(:todo).permit(:title, :content,:user_id, :attachment)
     end
 end

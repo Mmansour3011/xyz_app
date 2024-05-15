@@ -14,6 +14,11 @@
       <p class="block font-light  leading-relaxed text-inherit max-w-full">
         <%= todo.content %>
       </p>
+      <% if todo.attachment.attached? %>
+      <p class="block font-light  leading-relaxed text-inherit max-w-full">
+        Attachment: <%= todo.attachment.filename %>
+      </p>
+      <% end %>
     </div>
     <div class="p-6 pt-0">
       <%= link_to "Show this todo", todo, class:"align-middle font-bold text-center uppercase text-sm py-3 my-3 px-6 rounded-lg bg-teal-700 text-white" %>
