@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
 
 <div class="md:grid grid-cols-4 md:grid-rows-5 py-4 md:py-0 mx-4">
   <div class="col-span-2 col-start-2 row-span-3 row-start-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl text-pretty break-words">
@@ -6,17 +7,27 @@
       <h5 class="block mb-4 md:text-4xl text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
         <%= @todo.title %>
       </h5>
-      <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit">
+      <p class="block md:text-xl mb-5 text-base antialiased font-light leading-relaxed text-inherit">
         <%= @todo.content %>
       </p>
       <% if @todo.attachment.attached? %>
         <div>
-            <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit">
+            <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit my-5">
             Attachment: <%= @todo.attachment.filename %>
             <%= link_to 'Download Attachment', rails_blob_path(@todo.attachment),class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-green-600 text-white md:p-3 p-2 mx-4" %>
             </p>
         </div>
-      <% end %>     
+      <% end %>
+      <% if @users.any? %>
+      <div>
+        <%= form_with(url: share_todo_path(@todo), method: :post) do |f| %>
+        <%= f.collection_check_boxes :user_ids, @users, :id, :name do |u|%>
+          <%= u.label(class: 'text-2xl mr-2') { u.check_box(class: 'w-6 h-6 mr-2') + u.text } %>
+        <% end %>
+        <%= f.submit "Share",class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-purple-700 text-white md:p-3 p-2 mx-2"  %>
+        <% end %>  
+      </div>
+      <% end %>  
     </div>
     
     <div class=" mx-4 md:mb-5 pb-4 md:pb-0 flex justify-start ">
