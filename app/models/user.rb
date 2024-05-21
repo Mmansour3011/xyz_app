@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_secure_password
     validates :password,presence: true,length: { minimum: 6, too_short: "minimum is 6 characters" }, allow_nil: true #allow empty password on update
     has_many :todos, dependent: :restrict_with_error
+    has_many :todo_shares
+    has_many :shared_todos,through: :todo_shares, source: :todo
 
     def archive
         update(soft_delete: true)
