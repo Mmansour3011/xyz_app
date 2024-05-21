@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  resources :todos
+  resources :todos do
+    member do 
+      post :share
+    end
+
+    collection do
+      get "shared", to: "todos#index_shared"
+    end
+  end
+  
   resources :users do
     member do
       patch :archive

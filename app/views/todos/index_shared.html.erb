@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<div id= "heading" class="text-center my-5">
+  <h1 class="md:text-4xl text-2xl font-bold text-gray-900  ">Share Todos</h1>
+</div>
+
+
+<% if @shared_todos.any? %>
+    <div id="todos" class="md:grid grid-cols-3 md:mx-0 mx-4">
+        <% @shared_todos.each do |todo| %>
+            <div class="col-start-2 col-span-1 my-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl text-pretty break-words ">
+                <div class="p-6">
+                
+                    <h5 class="block mb-2 md:text-2xl text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 ">
+                        <%= todo.title %>
+                    </h5>
+                    <p class="block font-light  leading-relaxed text-inherit max-w-full">
+                        <%= todo.content %>
+                    </p>
+                    <% if todo.attachment.attached? %>
+                    <p class="block font-light  leading-relaxed text-inherit max-w-full">
+                        Attachment: <%= todo.attachment.filename %>
+                    </p>
+                    <% end %>
+                    <p class="block mb-2 md:text-md text-lg  leading-snug tracking-normal text-blue-gray-900 ">
+                        Shared by: <%= todo.user.name %>
+                    </p>
+                </div>
+            </div>
+<% end %>
+    </div>
+<% else %>
+    <div class="text-center my-10">
+        <p class="md:text-4xl text-xl text-gray-900  ">No todos have been shared with you.</p>
+    </div>
+<% end %>
