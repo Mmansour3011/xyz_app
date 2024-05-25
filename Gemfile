@@ -48,7 +48,7 @@ gem "bootsnap", require: false
 #Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
 gem 'capybara', '~> 3.40'
 
-# tailwind for updating css 
+# tailwind for updating css
 gem "tailwindcss-rails", "~> 2.3"
 
 group :development, :test do
@@ -67,5 +67,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
 
+#Enable live reload when updating
+  gem "rails_live_reload"
+end
