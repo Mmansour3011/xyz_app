@@ -12,13 +12,13 @@
   <% end %>
   <div class="max-w-4xl mx-auto mt-3">
     <div class="mb-5">
-      <%= form.label :title, style: "display: block",class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.text_field :title, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.label :title, style: "display: block",class: " form-label text-gray-900 " %>
+      <%= form.text_field :title, class: "form-text text-gray-900" %>
     </div>
     
     <div class="my-10">
-      <%= form.label :content, style: "display: block" ,class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.text_area :content, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-36" %>
+      <%= form.label :content, style: "display: block" ,class: "form-label text-gray-900" %>
+      <%= form.text_area :content, class: "form-text text-gray-900 h-36" %>
     </div>
     <div class="my-10">
       <%= form.label :attachment %>
@@ -26,7 +26,8 @@
     </div>
     
     <div class="flex justify-center">
-      <%= form.submit class: "font-bold text-center uppercase md:text-2xl py-3 px-6 rounded-lg bg-teal-700 text-white md:w-72 w-56"%>
+      <%= form.submit class: "bg-teal-700 form-submit"%>
     </div>
-</div>
+  </div>
 <% end %>
+
