@@ -17,7 +17,7 @@ class UsersController < ApplicationController
             reset_session
             log_in @user
             flash[:success] = "Welcome to XYZ App!"
-            redirect_to todos_path      
+            redirect_to todos_path
             else
             render "new" , status: :unprocessable_entity
         end
@@ -49,10 +49,19 @@ class UsersController < ApplicationController
     def archive
         @user = User.find(params[:id])
         @user.archive
+        @user.clear_todo_shares
         redirect_to users_path,notice: "User is deleted succesfully!"
     end
 
-    private 
+    def archiveMe
+        @user = User.find(params[:id])
+        @user.archive
+        @user.clear_todo_shares
+        log_out
+        redirect_to root_url, status: :see_other,notice: "User is deleted succesfully!"
+    end
+
+    private
     def user_params
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
