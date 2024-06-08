@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :todos do
-    member do 
+    member do
       post :share
     end
 
@@ -8,13 +8,12 @@ Rails.application.routes.draw do
       get "shared", to: "todos#index_shared"
     end
   end
-  
   resources :users do
     member do
       patch :archive
+      patch :archiveMe
     end
   end
-  
   # root "todos#index"
   root "application#root"
 
