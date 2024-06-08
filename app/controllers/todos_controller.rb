@@ -1,8 +1,7 @@
 class TodosController < ApplicationController
-include(TodosHelper) 
-  
+include(TodosHelper)
+
   before_action :set_todo, only: %i[ show edit update destroy ]
-  
   # GET /todos
   def index
     @todos=current_user.todos
@@ -54,9 +53,7 @@ include(TodosHelper)
     @todo=Todo.find(params[:id])
     users=User.where(id: params[:user_ids])
     if @todo.share_with(users) && users.present?
-      redirect_to @todo, notice: "Todo shared successfully."
-    elsif users.empty?
-      redirect_to @todo, alert: "No user selected to share with."
+      redirect_to @todo, notice: "Todo shared successfully"
     else
       redirect_to @todo, alert: "Failed to share todo."
     end
@@ -67,7 +64,7 @@ include(TodosHelper)
   end
 
   def index_shared
-    @shared_todos=current_user.shared_todos
+    #updated to make it show the shared todos of active users only...
+    @shared_todos = current_user.shared_todos.joins(:user).where(users: { soft_delete: false })
   end
- 
 end
