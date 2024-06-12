@@ -48,14 +48,8 @@ gem "bootsnap", require: false
 #Capybara is an integration testing tool for rack based web applications. It simulates how a user would interact with a website
 gem 'capybara', '~> 3.40'
 
-# tailwind for updating css 
+# tailwind for updating css
 gem "tailwindcss-rails", "~> 2.3"
-
-#webpack to manage app-like JavaScript modules in Rails
-gem 'webpacker', '~> 5.4', '>= 5.4.4'
-
-# Hotwire is a modern approach to building interactive web applications using HTML instead of JavaScript.
-gem 'hotwire-rails', '~> 0.1.3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -74,4 +68,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
