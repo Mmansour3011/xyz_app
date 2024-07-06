@@ -15,5 +15,9 @@ class User < ApplicationRecord
     def isActive?
         !soft_delete
     end
-    
+
+    def clear_todo_shares
+        todo_shares.update_all(user_id: nil)
+    end
+
 end
