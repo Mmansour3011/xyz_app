@@ -12,24 +12,24 @@
   <% end %>
   <div class="max-w-2xl mx-auto mt-3">
     <div class="mb-5">
-      <%= form.label :name, style: "display: block",class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.label :name, style: "display: block",class: "form-label text-gray-900" %>
+      <%= form.text_field :name, class: "form-text text-gray-900" %>
     </div>
     <div class="mb-5">
-      <%= form.label :email, style: "display: block",class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.email_field :email, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.label :email, style: "display: block",class: "form-label text-gray-900" %>
+      <%= form.email_field :email, class: "form-text text-gray-900" %>
     </div>
     <div class="mb-5">
-      <%= form.label :password, style: "display: block",class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.password_field :password, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.label :password, style: "display: block",class: "form-label text-gray-900" %>
+      <%= form.password_field :password, class: "form-text text-gray-900" %>
     </div>
     <div class="mb-5">
-      <%= form.label :password_confirmation, style: "display: block",class: "block mb-2 text-2xl font-medium text-gray-900 dark:text-white" %>
-      <%= form.password_field :password_confirmation, class: "bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.label :password_confirmation, style: "display: block",class: "form-label text-gray-900" %>
+      <%= form.password_field :password_confirmation, class: "form-text text-gray-900" %>
     </div>
     
     <div class="flex justify-center">
-      <%= form.submit class: "font-bold text-center uppercase md:text-2xl py-3 px-6 rounded-lg bg-teal-700 text-white md:w-72 w-56"%>
+      <%= form.submit class: "form-submit bg-teal-700 md:w-72 w-56"%>
     </div>
 </div>
 <% end %>

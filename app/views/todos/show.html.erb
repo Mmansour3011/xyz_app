@@ -1,39 +1,37 @@
 <p style="color: green"><%= notice %></p>
 <p style="color: red"><%= alert %></p>
 
-<div class="md:grid grid-cols-4 md:grid-rows-5 py-4 md:py-0 mx-4">
+<div class="md:grid grid-cols-4 md:grid-rows-5 py-4 md:py-0 mx-4" >
   <div class="col-span-2 col-start-2 row-span-3 row-start-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl text-pretty break-words">
     <div class="p-6">
-      <h5 class="block mb-4 md:text-4xl text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+      <h5 class="todo-title mb-4 md:text-4xl text-2xl font-semibold text-blue-gray-900">
         <%= @todo.title %>
       </h5>
-      <p class="block md:text-xl mb-5 text-base antialiased font-light leading-relaxed text-inherit">
+      <p class="todo-content md:text-xl mb-5 font-light ">
         <%= @todo.content %>
       </p>
       <% if @todo.attachment.attached? %>
         <div>
-            <p class="block md:text-xl text-base antialiased font-light leading-relaxed text-inherit my-5">
+            <p class="todo-attachment md:text-xl text-base font-light my-5">
             Attachment: <%= @todo.attachment.filename %>
             <%= link_to 'Download Attachment', rails_blob_path(@todo.attachment),class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-green-600 text-white md:p-3 p-2 mx-4" %>
             </p>
         </div>
       <% end %>
       <% if @users.any? %>
-      <div>
-        <%= form_with(url: share_todo_path(@todo), method: :post) do |f| %>
-        <%= f.collection_check_boxes :user_ids, @users, :id, :name do |u|%>
-          <%= u.label(class: 'text-2xl mr-2') { u.check_box(class: 'w-6 h-6 mr-2') + u.text } %>
-        <% end %>
-        <%= f.submit "Share",class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-purple-700 text-white md:p-3 p-2 mx-2"  %>
-        <% end %>  
-      </div>
+        <div>
+          <%= form_with(url: share_todo_path(@todo), method: :post) do |f| %>
+          <%= f.collection_check_boxes :user_ids, @users, :id, :name do |u|%>
+            <%= u.label(class: 'text-2xl mr-2') { u.check_box(class: 'w-6 h-6 mr-2') + u.text } %>
+          <% end %>
+          <%= f.submit "Share",class:"todoShow-btn bg-purple-700 mb-2"  %>
+          <% end %>  
+        </div>
       <% end %>  
-    </div>
-    
     <div class=" mx-4 md:mb-5 pb-4 md:pb-0 flex justify-start ">
-      <%= link_to "Edit this todo", edit_todo_path(@todo),class:" font-bold text-center uppercase md:text-base text-xs  rounded-lg bg-blue-700 text-white md:p-3 p-2" %>
-      <%= button_to "Destroy this todo", @todo, method: :delete,data: { turbo_confirm: 'Are you sure?' },class:" font-bold md:text-center uppercase text-base text-xs  rounded-lg bg-red-600 text-white md:p-4 mx-3  p-2" %>  
-      <%= link_to "Back to todos", todos_path,class:" font-bold text-center uppercase md:text-base text-xs rounded-lg bg-yellow-500 text-white md:p-3 p-2" %>
+      <%= link_to "Edit this todo", edit_todo_path(@todo),class:"todoShow-btn bg-blue-700" %>
+      <%= button_to "Destroy this todo", @todo, method: :delete,data: { turbo_confirm: 'Are you sure?' },class:"todoShow-btn bg-red-600" %>  
+      <%= link_to "Back to todos", todos_path,class:"todoShow-btn bg-yellow-500" %>
     </div>
   </div>
 </div>

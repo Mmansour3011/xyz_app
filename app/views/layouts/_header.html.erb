@@ -1,21 +1,21 @@
-<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-5 ">
+  <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-5 ">
     <div class="flex items-center flex-shrink-0 text-white mr-6">
       <%= link_to "Todos", root_path,class: "font-semibold text-2xl tracking-tight" %>
     </div>
     <div class="md:w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow pb-2 md:pb-0">
         <% if !logged_in? %>
-        <%= link_to "Login", login_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
+        <%= link_to "Login", login_path,class: "header-btn " %>
         <% else %>
         <% if current_user.admin? %>
-        <%= link_to "Users", users_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
-        <%else%>
-        <%= link_to "Create Todo", new_todo_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
-        <%= link_to "Shared Todos", shared_todos_path,class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
-        <%end%>
-        <%= link_to "Settings", edit_user_path(current_user),class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
-        <%= link_to "Logout", logout_path, data: { "turbo-method": :delete },class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 " %>
-        <% end %>
-      </div>
-    </div>
-  </nav>
+        <%= link_to "Users", users_path,class: "header-btn " %>
+              <% else %>
+              <%= link_to "Create Todo", new_todo_path,class: "header-btn" %>
+              <%= link_to "Shared Todos", shared_todos_path, class: "header-btn" %>
+              <% end %>
+              <%= link_to "Settings", edit_user_path(current_user),class: "header-btn" %>
+              <%= link_to "Logout", logout_path, data: { "turbo-method": :delete },class: "header-btn " %>
+              <% end %>
+            </div>
+          </div>
+  </nav> 
